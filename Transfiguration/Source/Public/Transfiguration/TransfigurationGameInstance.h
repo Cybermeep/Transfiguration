@@ -1,0 +1,24 @@
+// Source/TMovement/Public/Transfiguration/TransfigurationGameInstance.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/GameInstance.h"
+#include "Transfiguration/TransfigurationRegistry.h"
+#include "TransfigurationGameInstance.generated.h"
+
+UCLASS()
+class TMOVEMENT_API UTransfigurationGameInstance : public UGameInstance
+{
+    GENERATED_BODY()
+
+public:
+    virtual void Init() override;
+
+    UFUNCTION(BlueprintCallable, Category = "Transfiguration")
+        UTransfigurationRegistry* GetSpellRegistry() const { return SpellRegistry; }
+
+private:
+    UPROPERTY()
+        TObjectPtr<UTransfigurationRegistry> SpellRegistry;
+};
