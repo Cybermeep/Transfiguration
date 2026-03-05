@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Transfigure",
+			"Path": "..\\Source\\Transfigure.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "TransfigureEditor",
+			"Path": "..\\Source\\TransfigureEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

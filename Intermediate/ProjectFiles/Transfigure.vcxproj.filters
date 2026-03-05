@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Transfigure.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Transfigure.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\TransfigureEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Transfigure">
+      <UniqueIdentifier>{32A7D835-9B31-314E-BBB1-222A808955FD}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Transfigure\Transfigure.Build.cs">
+      <Filter>Source\Transfigure</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Transfigure\Transfigure.cpp">
+      <Filter>Source\Transfigure</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfigure.h">
+      <Filter>Source\Transfigure</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Character">
+      <UniqueIdentifier>{84452E62-682D-3A9F-82F6-42F04B1912D3}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Character\TMCharacter.cpp">
+      <Filter>Source\Transfigure\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Character\TMCharacter.h">
+      <Filter>Source\Transfigure\Character</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Combat">
+      <UniqueIdentifier>{5339D656-5922-31EC-9E99-E35A099047BD}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Combat\WeaponComponent.cpp">
+      <Filter>Source\Transfigure\Combat</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Combat\WeaponComponent.h">
+      <Filter>Source\Transfigure\Combat</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Destruction">
+      <UniqueIdentifier>{7FBB6E76-632F-3DE6-9E28-3D9CB93ECFD9}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Destruction\DestructibleChunk.cpp">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Transfigure\Destruction\DestructibleSurface.cpp">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructionChunk.h">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Destruction\DestructionManager.cpp">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructionManager.h">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructionSurface.h">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Enemy">
+      <UniqueIdentifier>{1350B13D-1C68-376C-9819-B51E64DF4605}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Enemy\BaseEnemy.cpp">
+      <Filter>Source\Transfigure\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Enemy\BaseEnemy.h">
+      <Filter>Source\Transfigure\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Enemy\EnemyObjectPool.cpp">
+      <Filter>Source\Transfigure\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Enemy\EnemyObjectPool.h">
+      <Filter>Source\Transfigure\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Enemy\EnemyPod.cpp">
+      <Filter>Source\Transfigure\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Enemy\EnemyPod.h">
+      <Filter>Source\Transfigure\Enemy</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Grapple">
+      <UniqueIdentifier>{230CA48E-5157-3638-8DA4-40C5E189C298}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Grapple\CombatGrappleMove.cpp">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Grapple\CombatGrappleMove.h">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Grapple\ElementalGrappleEffect.cpp">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Grapple\ElementalGrappleEffect.h">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Grapple\GrappleComponent.cpp">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Grapple\GrappleComponent.h">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Grapple\GrappleLine.cpp">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Grapple\GrappleLine.h">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\StateMachine">
+      <UniqueIdentifier>{8FE49DE8-010F-3D39-BDD0-B9470F6253FD}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\StateMachine\TMStateBase.cpp">
+      <Filter>Source\Transfigure\StateMachine</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\StateMachine\TMStateBase.h">
+      <Filter>Source\Transfigure\StateMachine</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\StateMachine\TMStateMachine.cpp">
+      <Filter>Source\Transfigure\StateMachine</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\StateMachine\TMStateMachine.h">
+      <Filter>Source\Transfigure\StateMachine</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\States">
+      <UniqueIdentifier>{6ADD6743-DC1C-36BE-8468-A9E782E7A798}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_DoubleJump.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_DoubleJump.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_Idle.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_Idle.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_Jump.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_Jump.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_Slide.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_Slide.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_Sprint.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_Sprint.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_Walk.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_Walk.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_WallJump.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_WallJump.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\States\TMState_WallRun.cpp">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\States\TMState_WallRun.h">
+      <Filter>Source\Transfigure\States</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Temporal">
+      <UniqueIdentifier>{96F30B77-B163-35E4-9D02-2E9E1C9B219E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Temporal\TemporalClapAnimInstance.cpp">
+      <Filter>Source\Transfigure\Temporal</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Temporal\TemporalClapAnimInstance.h">
+      <Filter>Source\Transfigure\Temporal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Transfigure\Temporal\TemporalClapDefinition.h">
+      <Filter>Source\Transfigure\Temporal</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Transfiguration">
+      <UniqueIdentifier>{8058A23D-EAD7-34BB-A5F8-E27478A32D60}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\BuffEffectComponent.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\BuffEffectComponent.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\PersistentSigilActor.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\PersistentSigilActor.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\PortalSigilActor.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\PortalSigilActor.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\SigilActor.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\SigilActor.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\TransfigurationCastingComponent.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationCastingComponent.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\TransfigurationComboDetector.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationComboDetector.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationDefinition.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\TransfigurationEffectBase.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationEffectBase.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\TransfigurationGameInstance.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationGameInstance.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\TransfigurationRegistry.cpp">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationRegistry.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\TransfigurationTypes.h">
+      <Filter>Source\Transfigure\Transfiguration</Filter>
+    </ClInclude>
+    <Filter Include="Source\Transfigure\Transfiguration\Effects">
+      <UniqueIdentifier>{BAA03D87-CA89-3634-89EC-4DCD4B0630C5}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\Effects\FireBlastEffect.cpp">
+      <Filter>Source\Transfigure\Transfiguration\Effects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\Effects\FireBlastEffect.h">
+      <Filter>Source\Transfigure\Transfiguration\Effects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Transfigure\Transfiguration\Effects\IceWallEffect.cpp">
+      <Filter>Source\Transfigure\Transfiguration\Effects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Transfiguration\Effects\IceWallEffect.h">
+      <Filter>Source\Transfigure\Transfiguration\Effects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GrappleTypes.h">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
