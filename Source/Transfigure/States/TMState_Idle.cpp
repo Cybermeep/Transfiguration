@@ -1,10 +1,9 @@
-// TMState_Idle.cpp
+// Source/TMovement/Private/States/TMState_Idle.cpp
 
 #include "States/TMState_Idle.h"
 #include "Character/TMCharacter.h"
 #include "States/TMState_Walk.h"
 #include "States/TMState_Jump.h"
-#include "States/TMState_Sprint.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 void TMState_Idle::Enter()
@@ -17,29 +16,23 @@ void TMState_Idle::Tick(float DeltaTime)
 {
     auto* CMC = Owner->GetCharacterMovement();
 
-    // If the player is moving, transition to Walk.
+    // If the player has started moving, go to Walk
     if (Owner->GetVelocity().Size2D() > 10.f)
     {
         Owner->TransitionTo<TMState_Walk>();
         return;
     }
 
-    // If the player holds Sprint without moving, prepare to sprint.
-    if (Owner->bSprintHeld)
-    {
-        Owner->TransitionTo<TMState_Sprint>();
-        return;
-    }
-
-    // If somehow airborne while idle (e.g. fell off ledge), go to Jump.
+    // If the player walked off a ledge without jumping, enter air state
     if (!CMC->IsMovingOnGround())
     {
-        Owner->JumpsRemaining = 2;
+        Owner->JumpsRemaining = 1; // Walked off edge = no double jump
         Owner->TransitionTo<TMState_Jump>();
+        return;
     }
 }
 
 void TMState_Idle::Exit()
 {
-    // Nothing to clean up when leaving Idle.
+    // Nothing to clean up — walk speed is reset by the entering state
 }

@@ -157,4 +157,6 @@ void AGrappleLine::CreateWebIntersection(AGrappleLine* OtherLine)
     ConnectedLines.Add(OtherLine);
 
     OnWebIntersectionCreated(IntersectionPoint, ConnectedLines);
+   
+
 }

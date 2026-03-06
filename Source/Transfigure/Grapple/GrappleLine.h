@@ -65,7 +65,7 @@ public:
     UFUNCTION(BlueprintImplementableEvent, Category = "GrappleLine|Elemental")
         void OnElementalEffect(FVector Location, ETransfigurationElement Element);
 
-    UFUNCTION(BlueprintImplementableEvent, Category = "GrappleLine|Web")
+        UFUNCTION(BlueprintImplementableEvent, Category = "GrappleLine|Web")
         void OnWebIntersectionCreated(FVector IntersectionPoint, TArray<AGrappleLine*> ConnectedLines);
 
 protected:

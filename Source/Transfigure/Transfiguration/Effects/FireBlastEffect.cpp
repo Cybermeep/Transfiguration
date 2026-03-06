@@ -49,7 +49,7 @@ void UFireBlastEffect::Execute(
         }
         else
         {
-            QueueEnvironmentalDestruction(Origin, Instigator);
+            QueueEnvironmentalDestruction(Origin, Instigator, SpellData);
         }
     }
 

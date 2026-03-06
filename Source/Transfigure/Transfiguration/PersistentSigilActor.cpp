@@ -1,6 +1,6 @@
 // Source/TMovement/Private/Transfiguration/PersistentSigilActor.cpp
-
-#include "Transfiguration/PersistentSigilActor.h"
+#include "PersistentSigilActor.h"
+#include "SigilActor.h"
 #include "Character/TMCharacter.h"
 #include "Transfiguration/BuffEffectComponent.h"
 #include "Components/SphereComponent.h"

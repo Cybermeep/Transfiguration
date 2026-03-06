@@ -38,7 +38,11 @@ void ADestructibleChunk::InitializeFromMesh(UProceduralMeshComponent* SourceMesh
         Tangents.Add(Vertex.Tangent);
     }
 
-    Triangles = Section->ProcIndexBuffer;
+    Triangles.Reset(Section->ProcIndexBuffer.Num());
+    for (uint32 Index : Section->ProcIndexBuffer)
+    {
+        Triangles.Add((int32)Index);
+    }
 
     CollisionData.Vertices = Vertices;
     CollisionData.Triangles = Triangles;

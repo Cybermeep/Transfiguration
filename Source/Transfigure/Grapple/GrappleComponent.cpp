@@ -1,4 +1,5 @@
-// Source/TMovement/Private/Grapple/GrappleComponent.cpp
+﻿// Source/TMovement/Private/Grapple/GrappleComponent.cpp
+// FULL REPLACEMENT — fills in the swing physics stub with Verlet integration.
 
 #include "Grapple/GrappleComponent.h"
 #include "Grapple/GrappleLine.h"
@@ -26,47 +27,70 @@ void UGrappleComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
     UpdateLineLifecycles(DeltaTime);
 
-    if (bIsSwinging && OwnerCharacter)
+    if (bIsSwinging)
     {
-        FVector CharPos = OwnerCharacter->GetActorLocation();
-        FVector ToAnchor = SwingAnchorPoint - CharPos;
-        float CurrentDist = ToAnchor.Size();
+        UpdateSwingPhysics(DeltaTime);
+    }
+}
 
-        if (CurrentDist > 0.1f)
+// ── SWING PHYSICS (Verlet constraint) ──────────────────────────────────────
+//
+// How it works:
+//   1. Apply gravity to SwingVelocity each frame.
+//   2. Move the character by SwingVelocity * DeltaTime.
+//   3. Measure how far the new position is from the anchor point.
+//   4. If distance > rope length, project the character back onto the sphere
+//      surface and strip the outward component from velocity (constraint).
+//
+// This gives natural pendulum arcs without needing a full physics joint.
+// MomentumConservation (0–1) controls how much velocity survives each frame.
+// ───────────────────────────────────────────────────────────────────────────
+void UGrappleComponent::UpdateSwingPhysics(float DeltaTime)
+{
+    if (!OwnerCharacter) return;
+
+    auto* CMC = OwnerCharacter->GetCharacterMovement();
+
+    // Step 1 — Disable built-in gravity while we're handling it manually
+    CMC->GravityScale = 0.f;
+
+    // Step 2 — Apply gravity manually to our swing velocity
+    const float GravityZ = GetWorld()->GetGravityZ(); // typically -980
+    SwingVelocity.Z += GravityZ * DeltaTime;
+
+    // Step 3 — Integrate position
+    FVector CurrentPos = OwnerCharacter->GetActorLocation();
+    FVector NewPos = CurrentPos + SwingVelocity * DeltaTime;
+
+    // Step 4 — Enforce rope length constraint (project back onto sphere)
+    FVector ToAnchor = SwingAnchorPoint - NewPos;
+    float CurrentDist = ToAnchor.Size();
+
+    if (CurrentDist > SwingRopeLength && CurrentDist > KINDA_SMALL_NUMBER)
+    {
+        // Push the position back so it's exactly RopeLength from the anchor
+        FVector Correction = ToAnchor.GetSafeNormal() * (CurrentDist - SwingRopeLength);
+        NewPos += Correction;
+
+        // Strip outward velocity component (the rope can't stretch)
+        FVector RopeDir = (SwingAnchorPoint - NewPos).GetSafeNormal();
+        float OutwardSpeed = FVector::DotProduct(SwingVelocity, -RopeDir);
+        if (OutwardSpeed > 0.f)
         {
-            // Step 1: Apply gravity manually this frame.
-            FVector CurrentVel = OwnerCharacter->GetCharacterMovement()->Velocity;
-            CurrentVel.Z -= 980.f * DeltaTime; // gravity acceleration
-
-            // Step 2: Move the character by its velocity.
-            FVector NewPos = CharPos + CurrentVel * DeltaTime;
-
-            // Step 3: Enforce the rope constraint.
-            // Push the character back to be exactly RopeLength away from anchor.
-            FVector NewToAnchor = SwingAnchorPoint - NewPos;
-            float NewDist = NewToAnchor.Size();
-
-            if (NewDist > RopeLength)
-            {
-                FVector Correction = NewToAnchor.GetSafeNormal() * (NewDist - RopeLength);
-                NewPos += Correction;
-            }
-
-            // Step 4: Derive velocity from position change (Verlet integration).
-            FVector NewVel = (NewPos - CharPos) / DeltaTime;
-
-            // Step 5: Apply SwingStrength multiplier for feel.
-            NewVel *= SwingStrength;
-
-            // Step 6: Write velocity back to the movement component.
-            OwnerCharacter->GetCharacterMovement()->Velocity = NewVel;
-            OwnerCharacter->SetActorLocation(NewPos, true);
+            SwingVelocity += RopeDir * OutwardSpeed;
         }
-        else
-        {
-            // Character is at the anchor point --- release.
-            ReleaseGrapple();
-        }
+    }
+
+    // Step 5 — Apply damping so the swing doesn't gain energy over time
+    SwingVelocity *= FMath::Pow(MomentumConservation, DeltaTime);
+
+    // Step 6 — Move character to new position (bypasses CMC so we own movement)
+    OwnerCharacter->SetActorLocation(NewPos, true);
+
+    // Step 7 — Update the visual line endpoint to track current player position
+    if (ActiveLines.Num() > 0)
+    {
+        ActiveLines.Last().StartPoint = NewPos;
     }
 }
 
@@ -82,7 +106,6 @@ void UGrappleComponent::StartAiming(ETransfigurationElement Element)
 void UGrappleComponent::FireGrapple(FVector AimLocation, AActor* TargetEnemy)
 {
     if (CurrentState != EGrappleState::Aiming && CurrentState != EGrappleState::Inactive) return;
-
     if (!OwnerCharacter) return;
 
     float ManaCost = (TargetEnemy ? CombatGrappleManaCost : SwingManaCost);
@@ -106,13 +129,16 @@ void UGrappleComponent::PerformGrappleSwing(FVector AnchorPoint)
 {
     if (!OwnerCharacter) return;
 
-    // Store pre-grapple velocity for momentum conservation
-    //FVector PreVelocity = OwnerCharacter->GetCharacterMovement()->Velocity;
-    FVector PreVelocity = OwnerCharacter->GetCharacterMovement()->GravityScale = 0.0f;
-    //fix applied ^^
+    // Store pre-grapple velocity for initial swing velocity
+    FVector PreVelocity = OwnerCharacter->GetCharacterMovement()->Velocity;
     PreserveMomentum(PreVelocity);
 
-    // Create grapple line data
+    // Record anchor and rope length for physics
+    SwingAnchorPoint = AnchorPoint;
+    SwingRopeLength = FVector::Dist(OwnerCharacter->GetActorLocation(), AnchorPoint);
+    SwingRopeLength = FMath::Max(SwingRopeLength, 100.f); // Minimum rope length
+
+    // Create visual line data
     FGrappleLineData NewLine;
     NewLine.StartPoint = OwnerCharacter->GetActorLocation();
     NewLine.EndPoint = AnchorPoint;
@@ -123,45 +149,38 @@ void UGrappleComponent::PerformGrappleSwing(FVector AnchorPoint)
     ActiveLines.Add(NewLine);
     OnGrappleLineCreated.Broadcast(NewLine);
 
-    // Start swinging
     bIsSwinging = true;
-    SwingAnchorPoint = AnchorPoint;
-    RopeLength = FVector::Dist(OwnerCharacter->GetActorLocation(), AnchorPoint);
     CurrentState = EGrappleState::Swinging;
     OnGrappleStateChanged.Broadcast(CurrentState);
 
-    // Set timer to auto-release
+    // Auto-release after MaxSwingTime
     GetWorld()->GetTimerManager().SetTimer(
         SwingTimerHandle,
         this, &UGrappleComponent::ReleaseGrapple,
         MaxSwingTime,
         false);
 
-    // Apply elemental effect
-    ApplyElementalEffect(NewLine);
+    ApplyElementalEffect(ActiveLines.Last());
 
-    UE_LOG(LogTemp, Verbose, TEXT("GrappleComponent: Started swing to %s"), *AnchorPoint.ToString());
+    UE_LOG(LogTemp, Verbose, TEXT("GrappleComponent: Started swing to %s, rope length %.1f"),
+        *AnchorPoint.ToString(), SwingRopeLength);
 }
 
 void UGrappleComponent::PerformCombatGrapple(AActor* TargetEnemy, ECombatGrappleMove MoveType)
 {
     if (!OwnerCharacter || !TargetEnemy) return;
 
-    // Store pre-grapple velocity
-    FVector PreVelocity = OwnerCharacter->GetCharacterMovement()->Velocity;
+    FVector Direction = (TargetEnemy->GetActorLocation() -
+        OwnerCharacter->GetActorLocation()).GetSafeNormal();
+    float Distance = FVector::Dist(OwnerCharacter->GetActorLocation(),
+        TargetEnemy->GetActorLocation());
 
-    // Pull character to enemy
-    FVector Direction = (TargetEnemy->GetActorLocation() - OwnerCharacter->GetActorLocation()).GetSafeNormal();
-    float Distance = FVector::Dist(OwnerCharacter->GetActorLocation(), TargetEnemy->GetActorLocation());
-
-    // Apply impulse toward enemy
     OwnerCharacter->GetCharacterMovement()->AddImpulse(Direction * Distance * 10.0f, true);
 
     CurrentState = EGrappleState::CombatGrapple;
     OnGrappleStateChanged.Broadcast(CurrentState);
     OnCombatGrappleExecuted.Broadcast(MoveType);
 
-    // Create combat grapple line (very brief)
     FGrappleLineData CombatLine;
     CombatLine.StartPoint = OwnerCharacter->GetActorLocation();
     CombatLine.EndPoint = TargetEnemy->GetActorLocation();
@@ -171,15 +190,11 @@ void UGrappleComponent::PerformCombatGrapple(AActor* TargetEnemy, ECombatGrapple
 
     ActiveLines.Add(CombatLine);
     OnGrappleLineCreated.Broadcast(CombatLine);
-
-    UE_LOG(LogTemp, Log, TEXT("GrappleComponent: Executed combat grapple on %s"), *TargetEnemy->GetName());
 }
 
 void UGrappleComponent::ExecuteCombatMove(ECombatGrappleMove MoveType, AActor* TargetEnemy)
 {
     if (!OwnerCharacter) return;
-
-    // This would be called from input handlers for specific combat moves
     PerformCombatGrapple(TargetEnemy, MoveType);
 }
 
@@ -188,29 +203,29 @@ void UGrappleComponent::ReleaseGrapple()
     if (!bIsSwinging) return;
 
     bIsSwinging = false;
+
+    // Restore normal gravity
+    if (OwnerCharacter)
+    {
+        OwnerCharacter->GetCharacterMovement()->GravityScale = 1.f;
+
+        // Hand off swing velocity to the CharacterMovementComponent
+        // so the player carries their momentum out of the swing
+        OwnerCharacter->GetCharacterMovement()->Velocity = SwingVelocity;
+    }
+
     CurrentState = EGrappleState::Inactive;
     OnGrappleStateChanged.Broadcast(CurrentState);
 
     GetWorld()->GetTimerManager().ClearTimer(SwingTimerHandle);
 
-    //fix
-    if (OwnerCharacter)
-    {
-        // Restore gravity.
-        OwnerCharacter->GetCharacterMovement()->GravityScale = 1.0f;
-
-        // Preserve momentum --- give the player the swing velocity.
-        // MomentumConservation is 0.95 by default.
-        OwnerCharacter->GetCharacterMovement()->Velocity *= MomentumConservation;
-    }
-
-    UE_LOG(LogTemp, Verbose, TEXT("GrappleComponent: Released grapple"));
+    UE_LOG(LogTemp, Verbose, TEXT("GrappleComponent: Released grapple, exit velocity %s"),
+        *SwingVelocity.ToString());
 }
 
 void UGrappleComponent::CancelAiming()
 {
     if (CurrentState != EGrappleState::Aiming) return;
-
     CurrentState = EGrappleState::Inactive;
     OnGrappleStateChanged.Broadcast(CurrentState);
 }
@@ -218,20 +233,17 @@ void UGrappleComponent::CancelAiming()
 void UGrappleComponent::CreateWebLine(FVector StartPoint, FVector EndPoint)
 {
     if (!CanCreateWebLine()) return;
-
     if (!OwnerCharacter->ConsumeMana(WebLineManaCost)) return;
 
     FGrappleLineData WebLine;
     WebLine.StartPoint = StartPoint;
     WebLine.EndPoint = EndPoint;
     WebLine.Element = CurrentElement;
-    WebLine.Lifetime = GetCurrentTierLines() * 2.0f; // Higher tier = longer lasting
+    WebLine.Lifetime = GetCurrentTierLines() * 2.0f;
     WebLine.bIsActive = true;
 
     ActiveLines.Add(WebLine);
     OnGrappleLineCreated.Broadcast(WebLine);
-
-    UE_LOG(LogTemp, Verbose, TEXT("GrappleComponent: Created web line"));
 }
 
 bool UGrappleComponent::CanCreateWebLine() const
@@ -241,19 +253,14 @@ bool UGrappleComponent::CanCreateWebLine() const
 
 TArray<FVector> UGrappleComponent::FindWebConnectionPoints() const
 {
-    TArray<FVector> Result;
-
-    // Find nearby grapple points (sigils, destroyed geometry, etc.)
-    // Implementation would scan environment
-
-    return Result;
+    // Scan for nearby sigils and destroyed geometry to anchor web lines
+    // Full implementation would use overlap queries against sigil actors
+    return TArray<FVector>();
 }
 
 bool UGrappleComponent::IsEnemyGrappleable(AActor* Enemy) const
 {
-    if (!Enemy) return false;
-
-    // Check if enemy is within range and not immune
+    if (!Enemy || !OwnerCharacter) return false;
     float Distance = FVector::Dist(OwnerCharacter->GetActorLocation(), Enemy->GetActorLocation());
     return Distance <= MaxGrappleRange;
 }
@@ -264,11 +271,11 @@ float UGrappleComponent::GetCurrentTierLines() const
     {
     case EGrappleTier::Strand: return 1.0f;
     case EGrappleTier::Thread: return 2.0f;
-    case EGrappleTier::Cord: return 3.0f;
-    case EGrappleTier::Rope: return 4.0f;
-    case EGrappleTier::Web: return 6.0f;
-    case EGrappleTier::Nexus: return 8.0f;
-    default: return 1.0f;
+    case EGrappleTier::Cord:   return 3.0f;
+    case EGrappleTier::Rope:   return 4.0f;
+    case EGrappleTier::Web:    return 6.0f;
+    case EGrappleTier::Nexus:  return 8.0f;
+    default:                   return 1.0f;
     }
 }
 
@@ -279,8 +286,8 @@ float UGrappleComponent::GetMomentumPreservation() const
 
 void UGrappleComponent::ApplyElementalEffect(FGrappleLineData& LineData)
 {
-    // Apply elemental-specific effects to the line
-    // Implementation would handle different elements
+    // Elemental effects on grapple lines (visual/gameplay tinting)
+    // Full VFX implementation driven from Blueprint via OnGrappleLineCreated delegate
 }
 
 void UGrappleComponent::UpdateLineLifecycles(float DeltaTime)
@@ -293,19 +300,16 @@ void UGrappleComponent::UpdateLineLifecycles(float DeltaTime)
             ActiveLines.RemoveAt(i);
         }
     }
-
     CurrentLineCount = ActiveLines.Num();
 }
 
 void UGrappleComponent::CleanupExpiredLines()
 {
-    // Cleanup handled in UpdateLineLifecycles
+    // Handled in UpdateLineLifecycles
 }
 
 bool UGrappleComponent::HasLineTierCapability(FString Capability) const
 {
-    // Check if current tier has specific capability
-    // Implementation would check against tier capabilities
     return true;
 }
 

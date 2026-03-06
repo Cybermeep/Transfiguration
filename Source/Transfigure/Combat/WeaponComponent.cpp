@@ -1,4 +1,5 @@
-// Source/TMovement/Private/Combat/WeaponComponent.cpp
+﻿// Source/TMovement/Private/Combat/WeaponComponent.cpp
+// FULL REPLACEMENT — renames OnWeaponHit() to ProcessHit() to match header fix.
 
 #include "Combat/WeaponComponent.h"
 #include "Character/TMCharacter.h"
@@ -28,10 +29,10 @@ void UWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType,
     FActorComponentTickFunction* ThisTickFunction)
 {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
     UpdateInfusion(DeltaTime);
 }
 
+// ── BUG 4 FIX: Renamed from OnWeaponHit to ProcessHit ──
 void UWeaponComponent::ProcessHit(FHitResult Hit, bool bWasHeadshot, bool bWasKill)
 {
     if (!OwnerCharacter) return;
@@ -56,6 +57,8 @@ void UWeaponComponent::ProcessHit(FHitResult Hit, bool bWasHeadshot, bool bWasKi
     else
     {
         ManaToAdd = ManaPerHit;
+        if (bWasHeadshot)
+            ManaToAdd += (ManaPerHeadshot - ManaPerHit); // Headshot bonus on non-kill
     }
 
     OwnerCharacter->AddMana(ManaToAdd);
@@ -63,9 +66,10 @@ void UWeaponComponent::ProcessHit(FHitResult Hit, bool bWasHeadshot, bool bWasKi
     // Apply elemental damage if infused
     if (bIsInfused && Hit.GetActor())
     {
-        ApplyElementalDamage(Hit.GetActor(), Hit, 0.0f);
+        ApplyElementalDamage(Hit.GetActor(), Hit, HitInfo.DamageDealt);
     }
 
+    // Broadcast to Blueprint listeners
     OnWeaponHit.Broadcast(HitInfo);
 }
 
@@ -83,10 +87,7 @@ void UWeaponComponent::InfuseWeaponWithElement(ETransfigurationElement Element)
     CurrentInfusion = Element;
     InfusionTimeRemaining = ElementalInfusionDuration;
 
-    // Clear any existing timer
     GetWorld()->GetTimerManager().ClearTimer(InfusionTimerHandle);
-
-    // Set timer for infusion expiration
     GetWorld()->GetTimerManager().SetTimer(
         InfusionTimerHandle,
         this, &UWeaponComponent::OnInfusionExpired,
@@ -108,14 +109,13 @@ void UWeaponComponent::UpdateInfusion(float DeltaTime)
     if (!bIsInfused) return;
 
     InfusionTimeRemaining -= DeltaTime;
-
     if (InfusionTimeRemaining <= 0.0f)
     {
         OnInfusionExpired();
     }
 }
-
-void UWeaponComponent::ApplyElementalDamage(AActor* Target, const FHitResult& Hit, float BaseDamage)
+//basic version until i create the status effect infrastructure
+void UWeaponComponent::ApplyElementalDamage(AActor* Target, const FHitResult& Hit, float InBaseDamage)
 {
     ABaseEnemy* Enemy = Cast<ABaseEnemy>(Target);
     if (!Enemy) return;
@@ -126,36 +126,107 @@ void UWeaponComponent::ApplyElementalDamage(AActor* Target, const FHitResult& Hi
         DamageMultiplier = ElementalDamageMultipliers[CurrentInfusion];
     }
 
-    float TotalDamage = BaseDamage * DamageMultiplier;
+    float TotalDamage = InBaseDamage * DamageMultiplier;
+    Enemy->TakePoolDamage(TotalDamage, Hit.ImpactPoint);
+}
+/*
+void UWeaponComponent::ApplyElementalDamage(AActor* Target, const FHitResult& Hit, float InBaseDamage)
+{
+    ABaseEnemy* Enemy = Cast<ABaseEnemy>(Target);
+    if (!Enemy) return;
 
-    // Apply additional elemental effect
+    float DamageMultiplier = 1.0f;
+    if (ElementalDamageMultipliers.Contains(CurrentInfusion))
+    {
+        DamageMultiplier = ElementalDamageMultipliers[CurrentInfusion];
+    }
+
+    float TotalDamage = InBaseDamage * DamageMultiplier;
+
     switch (CurrentInfusion)
     {
     case ETransfigurationElement::Fire:
-        // Apply burning DOT
+        // 3-second burning DoT: 10 damage/sec
+        Enemy->ApplyStatusEffect(EStatusEffect::Burning, 3.0f, 10.0f);
         break;
+
     case ETransfigurationElement::Ice:
-        // Apply slow
+        // Slow to 40% movement speed for 2 seconds
+        Enemy->ApplyStatusEffect(EStatusEffect::Slowed, 2.0f, 0.4f);
         break;
+
     case ETransfigurationElement::Lightning:
-        // Apply stun
+        // 0.5s stun, then chain 50% damage to nearest enemy within 300 units
+        Enemy->ApplyStatusEffect(EStatusEffect::Stunned, 0.5f, 0.0f);
+        if (OwnerCharacter)
+        {
+            TArray<FOverlapResult> Overlaps;
+            FCollisionQueryParams Params;
+            Params.AddIgnoredActor(OwnerCharacter);
+            Params.AddIgnoredActor(Target);
+            GetWorld()->OverlapMultiByChannel(
+                Overlaps,
+                Hit.ImpactPoint,
+                FQuat::Identity,
+                ECC_Pawn,
+                FCollisionShape::MakeSphere(300.f),
+                Params);
+
+            for (const FOverlapResult& Overlap : Overlaps)
+            {
+                ABaseEnemy* ChainTarget = Cast<ABaseEnemy>(Overlap.GetActor());
+                if (ChainTarget)
+                {
+                    ChainTarget->TakePoolDamage(TotalDamage * 0.5f, Hit.ImpactPoint);
+                    break; // Chain to first valid target only
+                }
+            }
+        }
         break;
+
     case ETransfigurationElement::Void:
-        // Apply blind
+        // Strip enemy buffs, return 5 mana to player
+        Enemy->ClearAllBuffs();
+        if (OwnerCharacter) OwnerCharacter->AddMana(5.0f);
         break;
+
     case ETransfigurationElement::Earth:
-        // Apply knockback
+        // Knockback 400 units with upward component
+    {
+        FVector KnockDir = (Target->GetActorLocation() -
+            OwnerCharacter->GetActorLocation()).GetSafeNormal();
+        KnockDir.Z = 0.4f; // Upward kick
+        KnockDir.Normalize();
+        Enemy->LaunchCharacter(KnockDir * 400.f, true, true);
+    }
+    break;
+
+    case ETransfigurationElement::Arcane:
+        // Mark enemy — next sigil within proximity deals 3x damage
+        Enemy->ApplyStatusEffect(EStatusEffect::SigilMarked, 8.0f, 3.0f);
         break;
+
     default:
         break;
     }
 
     Enemy->TakePoolDamage(TotalDamage, Hit.ImpactPoint);
 }
-
-void UWeaponComponent::OnInfusionExpired()
+*/
+/*
+void UWeaponComponent::InfuseWeaponWithElement(ETransfigurationElement Element)
 {
-    bIsInfused = false;
-    InfusionTimeRemaining = 0.0f;
-    UE_LOG(LogTemp, Verbose, TEXT("WeaponComponent: Infusion expired"));
+    bIsInfused = true;
+    CurrentInfusion = Element;
+    InfusionTimeRemaining = ElementalInfusionDuration;
+
+    GetWorld()->GetTimerManager().ClearTimer(InfusionTimerHandle);
+    GetWorld()->GetTimerManager().SetTimer(
+        InfusionTimerHandle,
+        this, &UWeaponComponent::OnInfusionExpired,
+        ElementalInfusionDuration,
+        false);
+
+    UE_LOG(LogTemp, Verbose, TEXT("WeaponComponent: Infused with element %d"), (int32)Element);
 }
+*/

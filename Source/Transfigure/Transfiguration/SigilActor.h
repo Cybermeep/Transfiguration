@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TransfigurationDefinition.h"
+#include "Transfiguration/TransfigurationDefinition.h"
 #include "SigilActor.generated.h"
 
 class UDecalComponent;
@@ -22,7 +22,7 @@ public:
     ASigilActor();
 
     UFUNCTION(BlueprintCallable, Category = "Sigil")
-        void Initialize(UTransfigurationDefinition* InSpell, AActor* InCaster);
+        virtual void Initialize(UTransfigurationDefinition* InSpell, AActor* InCaster);
 
     UFUNCTION(BlueprintCallable, Category = "Sigil")
         void TriggerManual();

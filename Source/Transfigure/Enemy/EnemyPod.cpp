@@ -11,7 +11,7 @@
 #include "Engine/OverlapResult.h"
 #include "TimerManager.h"
 #include "Kismet/GameplayStatics.h"
-#include "NavigationSystem/Public/NavigationSystem.h"
+#include "NavigationSystem.h"
 #include "AIController.h"
 
 AEnemyPod::AEnemyPod()
@@ -409,7 +409,7 @@ ATMCharacter* AEnemyPod::GetPlayerInRange() const
     for (AActor* Actor : OverlappingActors)
     {
         ATMCharacter* Player = Cast<ATMCharacter>(Actor);
-        if (Player && Player->IsAlive()) // Assuming IsAlive() exists
+        if (Player && Player->GetHealth() > 0.f)
         {
             return Player;
         }

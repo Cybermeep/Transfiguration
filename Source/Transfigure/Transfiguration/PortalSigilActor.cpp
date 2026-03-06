@@ -1,6 +1,7 @@
 // Source/TMovement/Private/Transfiguration/PortalSigilActor.cpp
 
-#include "Transfiguration/PortalSigilActor.h"
+#include "PortalSigilActor.h"
+#include "SigilActor.h"
 #include "Character/TMCharacter.h"
 #include "Components/SphereComponent.h"
 #include "Components/BillboardComponent.h"

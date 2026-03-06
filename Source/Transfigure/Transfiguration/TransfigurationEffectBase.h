@@ -31,7 +31,7 @@ public:
 
     // Destruction integration
     UFUNCTION(BlueprintCallable, Category = "Spell|Destruction")
-        virtual void QueueEnvironmentalDestruction(FVector Origin, AActor* Instigator);
+    virtual void QueueEnvironmentalDestruction(FVector Origin, AActor* Instigator, UTransfigurationDefinition* SpellData);
 
 protected:
     FVector StoredVelocity;

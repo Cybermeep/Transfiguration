@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "Grapple/GrappleTypes.h"
+#include "GrappleTypes.h"
 #include "CombatGrappleMove.generated.h"
 
 class ATMCharacter;
@@ -42,7 +42,7 @@ public:
 
 protected:
     UFUNCTION()
-        void ApplyElementalDamage(ABaseEnemy* Target, ETransfigurationElement Element, float BaseDamage);
+        void ApplyElementalDamage(ABaseEnemy* Target, ETransfigurationElement Element, float InDamage);
 
     UFUNCTION()
         void ApplyMomentumDamage(ATMCharacter* Instigator, ABaseEnemy* Target, float Speed);

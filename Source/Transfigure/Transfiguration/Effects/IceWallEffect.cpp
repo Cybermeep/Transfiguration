@@ -5,6 +5,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Destruction/DestructionManager.h"
 #include "Kismet/GameplayStatics.h"
+#include <SigilActor.h>
 
 void UIceWallEffect::Execute(
     const FVector& Origin,
@@ -30,7 +31,7 @@ void UIceWallEffect::Execute(
     // Queue environmental destruction (ice shatters)
     if (SpellData->bCausesEnvironmentalDestruction)
     {
-        QueueEnvironmentalDestruction(Origin, Instigator);
+        QueueEnvironmentalDestruction(Origin, Instigator, SpellData);
     }
 
     // Create the ice wall

@@ -111,28 +111,27 @@ void ATMCharacter::OnLook(const FInputActionValue& Value)
 
 void ATMCharacter::OnJumpPressed()
 {
-    // Are we on the ground? First jump.
+    if (JumpsRemaining <= 0) return;
+
+    --JumpsRemaining;
+
     if (GetCharacterMovement()->IsMovingOnGround())
     {
-        JumpsRemaining = 1; // We are using the first jump.
+        // Standard ground jump
         TransitionTo<TMState_Jump>();
-        return;
     }
-
-    // Are we airborne with jumps remaining? Double jump.
-    if (JumpsRemaining > 0)
+    else if (TMState_WallRun::CanEnter(this))
     {
-        --JumpsRemaining;
-        TransitionTo<TMState_DoubleJump>();
-        return;
-    }
-
-    // Are we wall running? Wall jump.
-    if (CurrentStateName == "WallRun")
-    {
+        // Mid-air near a wall — wall jump instead
         TransitionTo<TMState_WallJump>();
     }
+    else if (JumpsRemaining >= 0)
+    {
+        // Airborne with jumps left — double jump
+        TransitionTo<TMState_DoubleJump>();
+    }
 }
+
 
 // ── MAGIC INPUT HANDLERS ──
 
@@ -234,24 +233,16 @@ void ATMCharacter::OnGrappleEvadePressed()
 {
     if (!GrappleComponent) return;
 
-    // GetLastMovementInputVector() works with Enhanced Input.
-    // It returns the last direction the player pushed (or zero if no input).
-    FVector InputVec = GetLastMovementInputVector();
-    FVector EvadeDirection;
-
-    if (InputVec.SizeSquared() > 0.01f)
+    // Use last movement input vector (Enhanced Input compatible).
+    // Fall back to actor forward if no directional input is held.
+    FVector Direction = GetLastMovementInputVector().GetSafeNormal();
+    if (Direction.IsNearlyZero())
     {
-        // Player is holding a direction --- evade that way.
-        EvadeDirection = InputVec.GetSafeNormal();
-    }
-    else
-    {
-        // No input --- evade backwards (away from the threat).
-        EvadeDirection = -GetActorForwardVector();
+        Direction = GetActorForwardVector();
     }
 
-    // Pass the direction to the grapple component.
-    GrappleComponent->SetEvadeDirection(EvadeDirection);
+    // Pass direction to grapple component before executing the move
+    GrappleComponent->SetEvadeDirection(Direction);
     GrappleComponent->ExecuteCombatMove(ECombatGrappleMove::Evade, nullptr);
 }
 

@@ -11,7 +11,10 @@
     <None Include="..\..\Source\TransfigureEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\NuGet.Config" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -63,19 +66,19 @@
     <ClCompile Include="..\..\Source\Transfigure\Destruction\DestructibleChunk.cpp">
       <Filter>Source\Transfigure\Destruction</Filter>
     </ClCompile>
+    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructibleChunk.h">
+      <Filter>Source\Transfigure\Destruction</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Transfigure\Destruction\DestructibleSurface.cpp">
       <Filter>Source\Transfigure\Destruction</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructionChunk.h">
+    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructibleSurface.h">
       <Filter>Source\Transfigure\Destruction</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Transfigure\Destruction\DestructionManager.cpp">
       <Filter>Source\Transfigure\Destruction</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructionManager.h">
-      <Filter>Source\Transfigure\Destruction</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Transfigure\Destruction\DestructionSurface.h">
       <Filter>Source\Transfigure\Destruction</Filter>
     </ClInclude>
     <Filter Include="Source\Transfigure\Enemy">
@@ -124,6 +127,9 @@
       <Filter>Source\Transfigure\Grapple</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Transfigure\Grapple\GrappleLine.h">
+      <Filter>Source\Transfigure\Grapple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Transfigure\Grapple\GrappleTypes.h">
       <Filter>Source\Transfigure\Grapple</Filter>
     </ClInclude>
     <Filter Include="Source\Transfigure\StateMachine">
@@ -281,11 +287,6 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Transfigure\Transfiguration\Effects\IceWallEffect.h">
       <Filter>Source\Transfigure\Transfiguration\Effects</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GrappleTypes.h">
-      <Filter>Source\Transfigure\Grapple</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

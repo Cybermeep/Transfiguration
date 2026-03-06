@@ -95,6 +95,7 @@ enum class EGrappleState : uint8
 UENUM(BlueprintType)
 enum class EGrappleTier : uint8
 {
+    None = 0 UMETA(Hidden),
     Strand = 1 UMETA(DisplayName = "Strand (Tier 1)"),
     Thread = 2 UMETA(DisplayName = "Thread (Tier 2)"),
     Cord = 3 UMETA(DisplayName = "Cord (Tier 3)"),
@@ -150,6 +151,8 @@ struct FComboChainRecipe
 USTRUCT()
 struct FActiveComboChain
 {
+        GENERATED_BODY()
+
     TArray<ETransfigurationElement> CurrentChain;
     float LastElementTime;
     FName ExpectedResultID;

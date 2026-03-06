@@ -30,7 +30,7 @@ void UCombatGrappleMove::ExecuteMove(ATMCharacter* Instigator, ABaseEnemy* Targe
         *UEnum::GetValueAsString(MoveType), *Target->GetName(), TotalDamage);
 }
 
-void UCombatGrappleMove::ApplyElementalDamage(ABaseEnemy* Target, ETransfigurationElement Element, float BaseDamage)
+void UCombatGrappleMove::ApplyElementalDamage(ABaseEnemy* Target, ETransfigurationElement Element, float InDamage)
 {
     if (!Target) return;
 

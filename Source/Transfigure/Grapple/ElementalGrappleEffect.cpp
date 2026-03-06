@@ -26,7 +26,7 @@ void AElementalGrappleEffect::BeginPlay()
     Super::BeginPlay();
 }
 
-void AElementalGraggleEffect::Tick(float DeltaTime)
+void AElementalGrappleEffect::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 }

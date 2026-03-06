@@ -60,9 +60,9 @@ float UTransfigurationEffectBase::GetScaledCooldown(UTransfigurationDefinition* 
     return SpellData->CooldownDuration * ScaleFactor;
 }
 
-void UTransfigurationEffectBase::QueueEnvironmentalDestruction(FVector Origin, AActor* Instigator)
+void UTransfigurationEffectBase::QueueEnvironmentalDestruction(FVector Origin, AActor* Instigator, UTransfigurationDefinition* SpellData)
 {
-    if (!bCausesEnvironmentalDestruction) return;
+    if (!SpellData || !SpellData->bCausesEnvironmentalDestruction) return;
 
     UWorld* World = Instigator ? Instigator->GetWorld() : nullptr;
     if (!World) return;
@@ -70,7 +70,7 @@ void UTransfigurationEffectBase::QueueEnvironmentalDestruction(FVector Origin, A
     ADestructionManager* DestructionManager = ADestructionManager::GetInstance(World);
     if (!DestructionManager) return;
 
-    DestructionManager->QueueDestruction(Origin, DestructionRadius, DestructionForce, nullptr);
+    DestructionManager->QueueDestruction(Origin, SpellData->DestructionRadius, SpellData->DestructionForce, nullptr);
 }
 
 void UTransfigurationEffectBase::ApplyRadialDamage(
@@ -105,7 +105,7 @@ TArray<AActor*> UTransfigurationEffectBase::GetActorsInRadius(
 
     TArray<AActor*> IgnoredActors;
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-    ObjectTypes.Add(UEngineTypes::GetObjectTypeQuery(ECC_Pawn));
+    ObjectTypes.Add(EObjectTypeQuery::ObjectTypeQuery3); // ECC_Pawn
 
     UKismetSystemLibrary::SphereOverlapActors(
         World,
