@@ -8,6 +8,7 @@
 UENUM(BlueprintType)
 enum class ETransfigurationElement : uint8
 {
+    None = 0 UMETA(DisplayName = "None"),
     Fire UMETA(DisplayName = "Fire"),
     Ice UMETA(DisplayName = "Ice"),
     Lightning UMETA(DisplayName = "Lightning"),

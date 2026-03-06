@@ -5,7 +5,11 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Destruction/DestructionManager.h"
 #include "Kismet/GameplayStatics.h"
-#include <SigilActor.h>
+#include "Transfiguration/SigilActor.h"
+#include "Enemy/BaseEnemy.h"
+#include "Engine/OverlapResult.h"
+
+
 
 void UIceWallEffect::Execute(
     const FVector& Origin,
@@ -35,7 +39,7 @@ void UIceWallEffect::Execute(
     }
 
     // Create the ice wall
-    CreateIceWall(Origin, Instigator);
+    CreateIceWall(Origin, Instigator, SpellData);
 
     if (SpellData->bConservesMomentum)
     {
@@ -43,7 +47,7 @@ void UIceWallEffect::Execute(
     }
 }
 
-void UIceWallEffect::CreateIceWall(const FVector& Origin, AActor* Instigator)
+void UIceWallEffect::CreateIceWall(const FVector& Origin, AActor* Instigator, UTransfigurationDefinition* SpellData)
 {
     if (!IceWallClass || !GetWorld()) return;
 
@@ -59,15 +63,71 @@ void UIceWallEffect::CreateIceWall(const FVector& Origin, AActor* Instigator)
     AActor* Wall = GetWorld()->SpawnActor<AActor>(
         IceWallClass, Origin, WallRotation, SpawnParams);
 
-    if (Wall && GetSpellDefinition())
+    if (Wall && SpellData)
     {
-        // Ice walls are temporary
-        Wall->SetLifeSpan(GetSpellDefinition()->TimeToLive);
+        Wall->SetLifeSpan(SpellData->TimeToLive);
     }
 }
 
 void UIceWallEffect::SpawnIceTrail(AActor* Instigator, float Duration)
 {
-    UE_LOG(LogTemp, Log, TEXT("IceWallEffect: Spawning ice trail for %f seconds"), Duration);
-    // Implementation would spawn ice trail along wall run path
+    if (!Instigator) return;
+
+    UWorld* World = Instigator->GetWorld();
+    if (!World) return;
+
+    FVector TrailDirection = Instigator->GetVelocity().GetSafeNormal();
+    FVector TrailStart = Instigator->GetActorLocation();
+
+    // Ice trail slows and damages enemies along the wall run path
+    int32 NumTrailPoints = FMath::Max(3, FMath::FloorToInt(Duration * 5.f));
+    float StepDistance = 60.f;
+
+    for (int32 i = 0; i < NumTrailPoints; i++)
+    {
+        FVector TrailPoint = TrailStart + (TrailDirection * StepDistance * i);
+
+        // Find enemies near each trail point and slow them
+        TArray<FOverlapResult> Overlaps;
+        FCollisionShape Sphere = FCollisionShape::MakeSphere(80.f);
+        FCollisionQueryParams Params;
+        Params.AddIgnoredActor(Instigator);
+
+        World->OverlapMultiByChannel(
+            Overlaps,
+            TrailPoint,
+            FQuat::Identity,
+            ECC_Pawn,
+            Sphere,
+            Params);
+
+        for (const FOverlapResult& Overlap : Overlaps)
+        {
+            ABaseEnemy* Enemy = Cast<ABaseEnemy>(Overlap.GetActor());
+            if (!Enemy) continue;
+
+            Enemy->TakePoolDamage(5.f, TrailPoint);
+
+            UCharacterMovementComponent* CMC =
+                Enemy->FindComponentByClass<UCharacterMovementComponent>();
+            if (CMC && CMC->MaxWalkSpeed > 100.f)
+            {
+                float SlowedSpeed = CMC->MaxWalkSpeed * 0.4f;
+                CMC->MaxWalkSpeed = SlowedSpeed;
+
+                FTimerHandle RestoreTimer;
+                FTimerDelegate RestoreDelegate;
+                float OrigSpeed = CMC->MaxWalkSpeed / 0.4f;
+                RestoreDelegate.BindLambda([CMC, OrigSpeed]()
+                    {
+                        if (CMC) CMC->MaxWalkSpeed = OrigSpeed;
+                    });
+                World->GetTimerManager().SetTimer(RestoreTimer, RestoreDelegate, 3.f, false);
+            }
+        }
+    }
+
+    UE_LOG(LogTemp, Verbose,
+        TEXT("IceWallEffect: Spawned ice trail with %d points over %.1fs"),
+        NumTrailPoints, Duration);
 }

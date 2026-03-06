@@ -129,6 +129,13 @@ void UWeaponComponent::ApplyElementalDamage(AActor* Target, const FHitResult& Hi
     float TotalDamage = InBaseDamage * DamageMultiplier;
     Enemy->TakePoolDamage(TotalDamage, Hit.ImpactPoint);
 }
+
+void UWeaponComponent::OnInfusionExpired()
+{
+    CurrentInfusion = ETransfigurationElement::None;
+    GetWorld()->GetTimerManager().ClearTimer(InfusionTimerHandle);
+    UE_LOG(LogTemp, Verbose, TEXT("WeaponComponent: Infusion expired"));
+}
 /*
 void UWeaponComponent::ApplyElementalDamage(AActor* Target, const FHitResult& Hit, float InBaseDamage)
 {

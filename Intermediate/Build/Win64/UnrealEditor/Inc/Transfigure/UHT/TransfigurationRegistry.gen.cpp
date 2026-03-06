@@ -89,7 +89,7 @@ struct Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics::NewProp_Element_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics::NewProp_Element = { "Element", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(TransfigurationRegistry_eventGetSpellsByElement_Parms, Element), Z_Construct_UEnum_Transfigure_ETransfigurationElement, METADATA_PARAMS(0, nullptr) }; // 4121596056
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics::NewProp_Element = { "Element", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(TransfigurationRegistry_eventGetSpellsByElement_Parms, Element), Z_Construct_UEnum_Transfigure_ETransfigurationElement, METADATA_PARAMS(0, nullptr) }; // 4031656671
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UTransfigurationDefinition_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(TransfigurationRegistry_eventGetSpellsByElement_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement_Statics::PropPointers[] = {
@@ -179,7 +179,7 @@ struct Z_Construct_UClass_UTransfigurationRegistry_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UTransfigurationRegistry_GetSpell, "GetSpell" }, // 400817818
-		{ &Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement, "GetSpellsByElement" }, // 4048711963
+		{ &Z_Construct_UFunction_UTransfigurationRegistry_GetSpellsByElement, "GetSpellsByElement" }, // 3291445401
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -233,10 +233,10 @@ UTransfigurationRegistry::~UTransfigurationRegistry() {}
 struct Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationRegistry_h__Script_Transfigure_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UTransfigurationRegistry, UTransfigurationRegistry::StaticClass, TEXT("UTransfigurationRegistry"), &Z_Registration_Info_UClass_UTransfigurationRegistry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTransfigurationRegistry), 3332776682U) },
+		{ Z_Construct_UClass_UTransfigurationRegistry, UTransfigurationRegistry::StaticClass, TEXT("UTransfigurationRegistry"), &Z_Registration_Info_UClass_UTransfigurationRegistry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTransfigurationRegistry), 3269021032U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationRegistry_h__Script_Transfigure_1232776131(TEXT("/Script/Transfigure"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationRegistry_h__Script_Transfigure_4065709147(TEXT("/Script/Transfigure"),
 	Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationRegistry_h__Script_Transfigure_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationRegistry_h__Script_Transfigure_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

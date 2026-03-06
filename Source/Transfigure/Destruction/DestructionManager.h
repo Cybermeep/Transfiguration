@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Destruction/DestructibleChunk.h"
+#include "Transfiguration/TransfigurationTypes.h" 
 #include "DestructionManager.generated.h"
 
 class ADestructibleChunk;

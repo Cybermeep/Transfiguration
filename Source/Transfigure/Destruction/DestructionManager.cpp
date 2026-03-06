@@ -1,6 +1,7 @@
 // Source/TMovement/Private/Destruction/DestructionManager.cpp
 
 #include "Destruction/DestructionManager.h"
+#include "Destruction/DestructibleSurface.h"
 #include "Destruction/DestructibleChunk.h"
 #include "ProceduralMeshComponent.h"
 #include "Async/Async.h"
@@ -8,6 +9,7 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "Chaos/ChaosEngineInterface.h"
+#include "EngineUtils.h"
 
 TWeakObjectPtr<ADestructionManager> ADestructionManager::Instance = nullptr;
 
@@ -171,9 +173,29 @@ void ADestructionManager::CleanupOldChunks()
 
 bool ADestructionManager::IsPositionDestructible(FVector Position) const
 {
-    // Check if position is within bounds of destructible geometry
-    // Implementation would query world for destructible actors
-    return true;
+    UWorld* World = GetWorld();
+    if (!World) return false;
+
+    // Iterate all DestructibleSurface actors in the level
+    for (TActorIterator<ADestructibleSurface> It(World); It; ++It)
+    {
+        ADestructibleSurface* Surface = *It;
+        if (!Surface) continue;
+
+        // Check if position is within the surface actor's bounding box
+        FBox Bounds = Surface->GetComponentsBoundingBox(true);
+        // Expand bounds slightly to catch edge cases
+        Bounds = Bounds.ExpandBy(50.f);
+
+        if (Bounds.IsInsideOrOn(Position))
+        {
+            // Also check surface hasn't already taken too much damage here
+            float Integrity = Surface->GetSurfaceIntegrity(Position);
+            return Integrity > 0.1f; // less than 90% destroyed
+        }
+    }
+
+    return false;
 }
 
 ADestructionManager* ADestructionManager::GetInstance(UWorld* World)

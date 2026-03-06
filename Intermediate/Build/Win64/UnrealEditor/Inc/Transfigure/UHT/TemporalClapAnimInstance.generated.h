@@ -17,23 +17,22 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 // ********** Begin Delegate FTemporalClapAnimEvent ************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_9_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_11_DELEGATE \
 TRANSFIGURE_API void FTemporalClapAnimEvent_DelegateWrapper(const FMulticastScriptDelegate& TemporalClapAnimEvent);
 
 
 // ********** End Delegate FTemporalClapAnimEvent **************************************************
 
 // ********** Begin Class UTemporalClapAnimInstance ************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execHandleNotify); \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execStopClapAnimation); \
 	DECLARE_FUNCTION(execPlayClapAnimation);
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_CALLBACK_WRAPPERS
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_CALLBACK_WRAPPERS
 TRANSFIGURE_API UClass* Z_Construct_UClass_UTemporalClapAnimInstance_NoRegister();
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUTemporalClapAnimInstance(); \
 	friend struct Z_Construct_UClass_UTemporalClapAnimInstance_Statics; \
@@ -44,7 +43,7 @@ public: \
 	DECLARE_SERIALIZER(UTemporalClapAnimInstance)
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UTemporalClapAnimInstance(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	/** Deleted move- and copy-constructors, should never be used */ \
@@ -56,14 +55,14 @@ public: \
 	NO_API virtual ~UTemporalClapAnimInstance();
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_11_PROLOG
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_13_PROLOG
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_CALLBACK_WRAPPERS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_INCLASS_NO_PURE_DECLS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_14_ENHANCED_CONSTRUCTORS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_CALLBACK_WRAPPERS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_INCLASS_NO_PURE_DECLS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

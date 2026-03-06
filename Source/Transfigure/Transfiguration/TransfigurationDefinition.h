@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "Transfiguration/TransfigurationTypes.h"
+#include "TransfigurationTypes.h"
 #include "TransfigurationDefinition.generated.h"
 
 class UTransfigurationEffectBase;

@@ -15,6 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeTemporalClapAnimInstance() {}
 // ********** Begin Cross Module References ********************************************************
 ENGINE_API UClass* Z_Construct_UClass_UAnimInstance();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+TRANSFIGURE_API UClass* Z_Construct_UClass_ATMCharacter_NoRegister();
 TRANSFIGURE_API UClass* Z_Construct_UClass_UTemporalClapAnimInstance();
 TRANSFIGURE_API UClass* Z_Construct_UClass_UTemporalClapAnimInstance_NoRegister();
 TRANSFIGURE_API UFunction* Z_Construct_UDelegateFunction_Transfigure_TemporalClapAnimEvent__DelegateSignature();
@@ -46,48 +47,6 @@ void FTemporalClapAnimEvent_DelegateWrapper(const FMulticastScriptDelegate& Temp
 	TemporalClapAnimEvent.ProcessMulticastDelegate<UObject>(NULL);
 }
 // ********** End Delegate FTemporalClapAnimEvent **************************************************
-
-// ********** Begin Class UTemporalClapAnimInstance Function HandleNotify **************************
-struct Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics
-{
-	struct TemporalClapAnimInstance_eventHandleNotify_Parms
-	{
-		FName NotifyName;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FNamePropertyParams NewProp_NotifyName;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FNamePropertyParams Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::NewProp_NotifyName = { "NotifyName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(TemporalClapAnimInstance_eventHandleNotify_Parms, NotifyName), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::NewProp_NotifyName,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_UTemporalClapAnimInstance, nullptr, "HandleNotify", Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::PropPointers), sizeof(Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::TemporalClapAnimInstance_eventHandleNotify_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::Function_MetaDataParams), Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::Function_MetaDataParams)},  };
-static_assert(sizeof(Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::TemporalClapAnimInstance_eventHandleNotify_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UTemporalClapAnimInstance::execHandleNotify)
-{
-	P_GET_PROPERTY(FNameProperty,Z_Param_NotifyName);
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->HandleNotify(Z_Param_NotifyName);
-	P_NATIVE_END;
-}
-// ********** End Class UTemporalClapAnimInstance Function HandleNotify ****************************
 
 // ********** Begin Class UTemporalClapAnimInstance Function OnClapEnd *****************************
 static FName NAME_UTemporalClapAnimInstance_OnClapEnd = FName(TEXT("OnClapEnd"));
@@ -241,7 +200,6 @@ void UTemporalClapAnimInstance::StaticRegisterNativesUTemporalClapAnimInstance()
 {
 	UClass* Class = UTemporalClapAnimInstance::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
-		{ "HandleNotify", &UTemporalClapAnimInstance::execHandleNotify },
 		{ "PlayClapAnimation", &UTemporalClapAnimInstance::execPlayClapAnimation },
 		{ "StopClapAnimation", &UTemporalClapAnimInstance::execStopClapAnimation },
 	};
@@ -292,7 +250,13 @@ struct Z_Construct_UClass_UTemporalClapAnimInstance_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsClapping_MetaData[] = {
 		{ "Category", "Temporal|Animation" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// --- Clap state ---\n" },
+#endif
 		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "--- Clap state ---" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ClapMontage_MetaData[] = {
 		{ "Category", "Temporal|Animation" },
@@ -314,6 +278,53 @@ struct Z_Construct_UClass_UTemporalClapAnimInstance_Statics
 		{ "Category", "Temporal|Animation" },
 		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CharacterSpeed_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// --- Movement state (driven each frame, read by Anim BP) ---\n" },
+#endif
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "--- Movement state (driven each frame, read by Anim BP) ---" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsWallRunning_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsSliding_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsSprinting_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsInAir_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsTemporalActive_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TemporalChargeAlpha_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// --- Blend values ---\n" },
+#endif
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "--- Blend values ---" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WallRunLean_MetaData[] = {
+		{ "Category", "Temporal|Animation" },
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OwnerCharacter_MetaData[] = {
+		{ "ModuleRelativePath", "Temporal/TemporalClapAnimInstance.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnClapPeakEvent;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnClapEndEvent;
@@ -324,10 +335,23 @@ struct Z_Construct_UClass_UTemporalClapAnimInstance_Statics
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ClapEndNotifyName;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ClapBlendInTime;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ClapBlendOutTime;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CharacterSpeed;
+	static void NewProp_bIsWallRunning_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsWallRunning;
+	static void NewProp_bIsSliding_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsSliding;
+	static void NewProp_bIsSprinting_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsSprinting;
+	static void NewProp_bIsInAir_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsInAir;
+	static void NewProp_bIsTemporalActive_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsTemporalActive;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_TemporalChargeAlpha;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_WallRunLean;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_OwnerCharacter;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UTemporalClapAnimInstance_HandleNotify, "HandleNotify" }, // 976021512
 		{ &Z_Construct_UFunction_UTemporalClapAnimInstance_OnClapEnd, "OnClapEnd" }, // 2118881044
 		{ &Z_Construct_UFunction_UTemporalClapAnimInstance_OnClapPeak, "OnClapPeak" }, // 2503051484
 		{ &Z_Construct_UFunction_UTemporalClapAnimInstance_OnClapStart, "OnClapStart" }, // 2851280578
@@ -352,6 +376,35 @@ const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UTemporalClapAni
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_ClapEndNotifyName = { "ClapEndNotifyName", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, ClapEndNotifyName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ClapEndNotifyName_MetaData), NewProp_ClapEndNotifyName_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_ClapBlendInTime = { "ClapBlendInTime", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, ClapBlendInTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ClapBlendInTime_MetaData), NewProp_ClapBlendInTime_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_ClapBlendOutTime = { "ClapBlendOutTime", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, ClapBlendOutTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ClapBlendOutTime_MetaData), NewProp_ClapBlendOutTime_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_CharacterSpeed = { "CharacterSpeed", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, CharacterSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CharacterSpeed_MetaData), NewProp_CharacterSpeed_MetaData) };
+void Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsWallRunning_SetBit(void* Obj)
+{
+	((UTemporalClapAnimInstance*)Obj)->bIsWallRunning = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsWallRunning = { "bIsWallRunning", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UTemporalClapAnimInstance), &Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsWallRunning_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsWallRunning_MetaData), NewProp_bIsWallRunning_MetaData) };
+void Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSliding_SetBit(void* Obj)
+{
+	((UTemporalClapAnimInstance*)Obj)->bIsSliding = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSliding = { "bIsSliding", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UTemporalClapAnimInstance), &Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSliding_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsSliding_MetaData), NewProp_bIsSliding_MetaData) };
+void Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSprinting_SetBit(void* Obj)
+{
+	((UTemporalClapAnimInstance*)Obj)->bIsSprinting = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSprinting = { "bIsSprinting", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UTemporalClapAnimInstance), &Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSprinting_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsSprinting_MetaData), NewProp_bIsSprinting_MetaData) };
+void Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsInAir_SetBit(void* Obj)
+{
+	((UTemporalClapAnimInstance*)Obj)->bIsInAir = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsInAir = { "bIsInAir", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UTemporalClapAnimInstance), &Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsInAir_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsInAir_MetaData), NewProp_bIsInAir_MetaData) };
+void Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsTemporalActive_SetBit(void* Obj)
+{
+	((UTemporalClapAnimInstance*)Obj)->bIsTemporalActive = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsTemporalActive = { "bIsTemporalActive", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UTemporalClapAnimInstance), &Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsTemporalActive_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsTemporalActive_MetaData), NewProp_bIsTemporalActive_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_TemporalChargeAlpha = { "TemporalChargeAlpha", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, TemporalChargeAlpha), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TemporalChargeAlpha_MetaData), NewProp_TemporalChargeAlpha_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_WallRunLean = { "WallRunLean", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, WallRunLean), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WallRunLean_MetaData), NewProp_WallRunLean_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_OwnerCharacter = { "OwnerCharacter", nullptr, (EPropertyFlags)0x0144000000000000, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTemporalClapAnimInstance, OwnerCharacter), Z_Construct_UClass_ATMCharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OwnerCharacter_MetaData), NewProp_OwnerCharacter_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTemporalClapAnimInstance_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_OnClapPeakEvent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_OnClapEndEvent,
@@ -361,6 +414,15 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTemporal
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_ClapEndNotifyName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_ClapBlendInTime,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_ClapBlendOutTime,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_CharacterSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsWallRunning,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSliding,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsSprinting,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsInAir,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_bIsTemporalActive,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_TemporalChargeAlpha,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_WallRunLean,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTemporalClapAnimInstance_Statics::NewProp_OwnerCharacter,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UTemporalClapAnimInstance_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UTemporalClapAnimInstance_Statics::DependentSingletons[])() = {
@@ -400,10 +462,10 @@ UTemporalClapAnimInstance::~UTemporalClapAnimInstance() {}
 struct Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h__Script_Transfigure_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UTemporalClapAnimInstance, UTemporalClapAnimInstance::StaticClass, TEXT("UTemporalClapAnimInstance"), &Z_Registration_Info_UClass_UTemporalClapAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTemporalClapAnimInstance), 1864667625U) },
+		{ Z_Construct_UClass_UTemporalClapAnimInstance, UTemporalClapAnimInstance::StaticClass, TEXT("UTemporalClapAnimInstance"), &Z_Registration_Info_UClass_UTemporalClapAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTemporalClapAnimInstance), 1251115172U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h__Script_Transfigure_4226019768(TEXT("/Script/Transfigure"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h__Script_Transfigure_2066326212(TEXT("/Script/Transfigure"),
 	Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h__Script_Transfigure_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Temporal_TemporalClapAnimInstance_h__Script_Transfigure_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

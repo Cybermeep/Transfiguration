@@ -25,5 +25,5 @@ public:
 
 private:
     void SpawnIceTrail(AActor* Instigator, float Duration);
-    void CreateIceWall(const FVector& Origin, AActor* Instigator);
+    void CreateIceWall(const FVector& Origin, AActor* Instigator, UTransfigurationDefinition* SpellData);
 };

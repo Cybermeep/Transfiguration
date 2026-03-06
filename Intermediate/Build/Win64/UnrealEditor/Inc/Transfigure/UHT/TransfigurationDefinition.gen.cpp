@@ -401,7 +401,7 @@ struct Z_Construct_UClass_UTransfigurationDefinition_Statics
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UTransfigurationDefinition_Statics::NewProp_SpellID = { "SpellID", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTransfigurationDefinition, SpellID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpellID_MetaData), NewProp_SpellID_MetaData) };
 const UECodeGen_Private::FTextPropertyParams Z_Construct_UClass_UTransfigurationDefinition_Statics::NewProp_DisplayName = { "DisplayName", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTransfigurationDefinition, DisplayName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DisplayName_MetaData), NewProp_DisplayName_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UTransfigurationDefinition_Statics::NewProp_Element_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UTransfigurationDefinition_Statics::NewProp_Element = { "Element", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTransfigurationDefinition, Element), Z_Construct_UEnum_Transfigure_ETransfigurationElement, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Element_MetaData), NewProp_Element_MetaData) }; // 4121596056
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UTransfigurationDefinition_Statics::NewProp_Element = { "Element", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTransfigurationDefinition, Element), Z_Construct_UEnum_Transfigure_ETransfigurationElement, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Element_MetaData), NewProp_Element_MetaData) }; // 4031656671
 void Z_Construct_UClass_UTransfigurationDefinition_Statics::NewProp_bIsPersistentSigil_SetBit(void* Obj)
 {
 	((UTransfigurationDefinition*)Obj)->bIsPersistentSigil = 1;
@@ -602,10 +602,10 @@ UTransfigurationDefinition::~UTransfigurationDefinition() {}
 struct Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationDefinition_h__Script_Transfigure_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UTransfigurationDefinition, UTransfigurationDefinition::StaticClass, TEXT("UTransfigurationDefinition"), &Z_Registration_Info_UClass_UTransfigurationDefinition, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTransfigurationDefinition), 1342993492U) },
+		{ Z_Construct_UClass_UTransfigurationDefinition, UTransfigurationDefinition::StaticClass, TEXT("UTransfigurationDefinition"), &Z_Registration_Info_UClass_UTransfigurationDefinition, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTransfigurationDefinition), 106325354U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationDefinition_h__Script_Transfigure_3581088148(TEXT("/Script/Transfigure"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationDefinition_h__Script_Transfigure_2075427869(TEXT("/Script/Transfigure"),
 	Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationDefinition_h__Script_Transfigure_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationDefinition_h__Script_Transfigure_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

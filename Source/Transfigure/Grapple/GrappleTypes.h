@@ -1,2 +1,2 @@
 #pragma once
-   #include "Transfiguration/TransfigurationTypes.h"
+#include "Transfiguration/TransfigurationTypes.h"

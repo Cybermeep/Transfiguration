@@ -65,8 +65,8 @@ public:
     UFUNCTION(BlueprintImplementableEvent, Category = "GrappleLine|Elemental")
         void OnElementalEffect(FVector Location, ETransfigurationElement Element);
 
-        UFUNCTION(BlueprintImplementableEvent, Category = "GrappleLine|Web")
-        void OnWebIntersectionCreated(FVector IntersectionPoint, TArray<AGrappleLine*> ConnectedLines);
+    UFUNCTION(BlueprintCallable, Category = "GrappleLine|Web")
+        virtual void OnWebIntersectionCreated(FVector IntersectionPoint, const TArray<AGrappleLine*>& ConnectedLines);
 
 protected:
     virtual void Tick(float DeltaTime) override;

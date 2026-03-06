@@ -21,14 +21,14 @@ class ADestructionManager;
 class UWorld;
 
 // ********** Begin Delegate FOnDestructionProcessed ***********************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_13_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_14_DELEGATE \
 TRANSFIGURE_API void FOnDestructionProcessed_DelegateWrapper(const FMulticastScriptDelegate& OnDestructionProcessed, FVector Location, float Radius);
 
 
 // ********** End Delegate FOnDestructionProcessed *************************************************
 
 // ********** Begin Class ADestructionManager ******************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetInstance); \
 	DECLARE_FUNCTION(execProcessDestructionQueue); \
 	DECLARE_FUNCTION(execQueueDestruction);
@@ -36,7 +36,7 @@ TRANSFIGURE_API void FOnDestructionProcessed_DelegateWrapper(const FMulticastScr
 
 TRANSFIGURE_API UClass* Z_Construct_UClass_ADestructionManager_NoRegister();
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesADestructionManager(); \
 	friend struct Z_Construct_UClass_ADestructionManager_Statics; \
@@ -47,7 +47,7 @@ public: \
 	DECLARE_SERIALIZER(ADestructionManager)
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	ADestructionManager(ADestructionManager&&) = delete; \
 	ADestructionManager(const ADestructionManager&) = delete; \
@@ -57,13 +57,13 @@ public: \
 	NO_API virtual ~ADestructionManager();
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_15_PROLOG
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_16_PROLOG
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_INCLASS_NO_PURE_DECLS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_18_ENHANCED_CONSTRUCTORS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_INCLASS_NO_PURE_DECLS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Destruction_DestructionManager_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

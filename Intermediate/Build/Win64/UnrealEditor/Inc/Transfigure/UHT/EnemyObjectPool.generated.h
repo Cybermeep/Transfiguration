@@ -20,21 +20,21 @@ class AActor;
 class ABaseEnemy;
 
 // ********** Begin Delegate FOnPoolExhausted ******************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_11_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_12_DELEGATE \
 TRANSFIGURE_API void FOnPoolExhausted_DelegateWrapper(const FMulticastScriptDelegate& OnPoolExhausted, int32 RequestedCount);
 
 
 // ********** End Delegate FOnPoolExhausted ********************************************************
 
 // ********** Begin Delegate FOnEnemyReturned ******************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_12_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_13_DELEGATE \
 TRANSFIGURE_API void FOnEnemyReturned_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyReturned, ABaseEnemy* Enemy);
 
 
 // ********** End Delegate FOnEnemyReturned ********************************************************
 
 // ********** Begin Class AEnemyObjectPool *********************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execPerformPoolMaintenance); \
 	DECLARE_FUNCTION(execOnEnemyDestroyed); \
 	DECLARE_FUNCTION(execCanSpawn); \
@@ -52,7 +52,7 @@ TRANSFIGURE_API void FOnEnemyReturned_DelegateWrapper(const FMulticastScriptDele
 
 TRANSFIGURE_API UClass* Z_Construct_UClass_AEnemyObjectPool_NoRegister();
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEnemyObjectPool(); \
 	friend struct Z_Construct_UClass_AEnemyObjectPool_Statics; \
@@ -63,7 +63,7 @@ public: \
 	DECLARE_SERIALIZER(AEnemyObjectPool)
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	AEnemyObjectPool(AEnemyObjectPool&&) = delete; \
 	AEnemyObjectPool(const AEnemyObjectPool&) = delete; \
@@ -73,13 +73,13 @@ public: \
 	NO_API virtual ~AEnemyObjectPool();
 
 
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_14_PROLOG
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_15_PROLOG
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_INCLASS_NO_PURE_DECLS \
-	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_17_ENHANCED_CONSTRUCTORS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_INCLASS_NO_PURE_DECLS \
+	FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Enemy_EnemyObjectPool_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -27,6 +27,7 @@ struct FGrappleLineData;
 	DECLARE_FUNCTION(execApplyLightningEffect); \
 	DECLARE_FUNCTION(execApplyIceEffect); \
 	DECLARE_FUNCTION(execApplyFireEffect); \
+	DECLARE_FUNCTION(execOnWebIntersectionCreated); \
 	DECLARE_FUNCTION(execCreateWebIntersection); \
 	DECLARE_FUNCTION(execCanConnectTo); \
 	DECLARE_FUNCTION(execApplyElementalEffectAtLocation); \

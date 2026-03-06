@@ -1,7 +1,7 @@
 // Source/TMovement/Private/Transfiguration/PortalSigilActor.cpp
 
-#include "PortalSigilActor.h"
-#include "SigilActor.h"
+#include "Transfiguration/PortalSigilActor.h"
+#include "Transfiguration/SigilActor.h"
 #include "Character/TMCharacter.h"
 #include "Components/SphereComponent.h"
 #include "Components/BillboardComponent.h"
@@ -116,13 +116,13 @@ bool APortalSigilActor::CanTeleportActor(AActor* ActorToTeleport) const
     if (!bIsActive || bIsOnCooldown || !LinkedPortal.IsValid()) return false;
 
     float CurrentTime = GetWorld()->GetTimeSeconds();
-    if (CurrentTime - LastTeleportTime < GetSpellDefinition()->PortalCooldown)
+    if (CurrentTime - LastTeleportTime < SpellDef->PortalCooldown)
         return false;
 
     if (LastTeleportedActor.Get() == ActorToTeleport)
         return false;
 
-    if (GetSpellDefinition()->bRequiresLineOfSight)
+    if (SpellDef->bRequiresLineOfSight)
     {
         FHitResult Hit;
         FCollisionQueryParams Params;
@@ -146,14 +146,14 @@ bool APortalSigilActor::CheckTeleportConditions(AActor* ActorToTeleport) const
     ATMCharacter* TMChar = Cast<ATMCharacter>(ActorToTeleport);
     if (!TMChar) return true;
 
-    FString RequiredState = GetSpellDefinition()->AllowedMovementStateForPortal;
+    FString RequiredState = SpellDef->AllowedMovementStateForPortal;
     if (!RequiredState.IsEmpty())
     {
         if (TMChar->CurrentStateName != RequiredState)
             return false;
     }
 
-    switch (GetSpellDefinition()->PortalActivation)
+    switch (SpellDef->PortalActivation)
     {
     case EPortalActivation::Conditional:
         return TMChar->bWantsToTeleport;
@@ -181,7 +181,7 @@ bool APortalSigilActor::TeleportActor(AActor* ActorToTeleport)
         return false;
 
     FVector PreservedVelocity = FVector::ZeroVector;
-    if (GetSpellDefinition()->bMaintainsMomentum)
+    if (SpellDef->bMaintainsMomentum)
     {
         ACharacter* Char = Cast<ACharacter>(ActorToTeleport);
         if (Char && Char->GetCharacterMovement())
@@ -201,7 +201,7 @@ bool APortalSigilActor::TeleportActor(AActor* ActorToTeleport)
 
     ActorToTeleport->SetActorLocation(ExitLocation, false, nullptr, ETeleportType::TeleportPhysics);
 
-    if (GetSpellDefinition()->bMaintainsMomentum && !PreservedVelocity.IsZero())
+    if (SpellDef->bMaintainsMomentum && !PreservedVelocity.IsZero())
     {
         ACharacter* Char = Cast<ACharacter>(ActorToTeleport);
         if (Char && Char->GetCharacterMovement())
@@ -217,7 +217,7 @@ bool APortalSigilActor::TeleportActor(AActor* ActorToTeleport)
     GetWorldTimerManager().SetTimer(
         CooldownTimerHandle,
         this, &APortalSigilActor::OnCooldownComplete,
-        GetSpellDefinition()->PortalCooldown,
+        SpellDef->PortalCooldown,
         false);
 
     ApplyTeleportEffects(ActorToTeleport, ExitLocation);
@@ -259,7 +259,7 @@ void APortalSigilActor::OnTeleportTriggerOverlap(UPrimitiveComponent* Overlapped
 {
     if (!OtherActor || OtherActor == this) return;
 
-    if (GetSpellDefinition()->PortalActivation == EPortalActivation::Delayed && bIsActive)
+    if (SpellDef->PortalActivation == EPortalActivation::Delayed && bIsActive)
     {
         OnPortalActivationWarning();
     }

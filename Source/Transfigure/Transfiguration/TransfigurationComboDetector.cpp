@@ -3,8 +3,10 @@
 #include "Transfiguration/TransfigurationComboDetector.h"
 #include "Transfiguration/SigilActor.h"
 #include "Transfiguration/TransfigurationCastingComponent.h"
+#include "Transfiguration/TransfigurationDefinition.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
+#include "EngineUtils.h"
 
 UTransfigurationComboDetector::UTransfigurationComboDetector()
 {
@@ -135,8 +137,38 @@ void UTransfigurationComboDetector::AddToComboChain(ETransfigurationElement Elem
 
                     if (Recipe.bConsumesSigils)
                     {
-                        // Find and destroy all sigils in the chain area
-                        // Implementation would scan for sigils of matching elements
+                        UWorld* World = GetWorld();
+                        if (!World) return;
+
+                        AActor* Owner = GetOwner();
+                        if (!Owner) return;
+
+                        // Collect all element types used in this chain
+                        TSet<ETransfigurationElement> ChainElements(Recipe.ElementChain);
+
+
+                        // Find all SigilActors in the level and destroy matching ones
+                        for (TActorIterator<ASigilActor> It(World); It; ++It)
+                        {
+                            ASigilActor* Sigil = *It;
+                            if (!Sigil || !Sigil->IsArmed()) continue;
+
+                            UTransfigurationDefinition* Def = Sigil->GetSpellDefinition();
+                            if (!Def) continue;
+
+                            // Only consume sigils whose element is part of this chain
+                            if (!ChainElements.Contains(Def->Element)) continue;
+
+                            // Only consume sigils within the combo proximity radius of the owner
+                            float Distance = FVector::Dist(
+                                Sigil->GetActorLocation(),
+                                Owner->GetActorLocation());
+
+                            if (Distance <= ComboProximityRadius)
+                            {
+                                Sigil->Destroy();
+                            }
+                        }
                     }
 
                     ResetComboChain();

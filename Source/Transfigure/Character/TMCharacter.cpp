@@ -578,3 +578,28 @@ void ATMCharacter::ApplyDamageBuff(float Multiplier, float Duration)
             CurrentDamageMultiplier = 1.0f;
         }, Duration, false);
 }
+void ATMCharacter::OnSprintStarted()
+{
+    TransitionTo<TMState_Sprint>();
+}
+
+void ATMCharacter::OnSprintEnded()
+{
+    // Only drop back to walk if we're actually sprinting
+    // (button release during a jump etc. should be ignored)
+    if (CurrentStateName == "Sprint")
+    {
+        TransitionTo<TMState_Walk>();
+    }
+}
+
+void ATMCharacter::OnSlidePressed()
+{
+    // Only slide if grounded and moving fast enough
+    if (GetCharacterMovement() &&
+        GetCharacterMovement()->IsMovingOnGround() &&
+        GetVelocity().Size2D() > 200.f)
+    {
+        TransitionTo<TMState_Slide>();
+    }
+}

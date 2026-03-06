@@ -68,12 +68,37 @@ void UFireBlastEffect::Execute(
 
 void UFireBlastEffect::SpawnFireTrail(AActor* Instigator, float Duration)
 {
-    // Implementation would spawn fire trail actor that follows the sliding player
-    // This is a placeholder for the actual implementation
-    UE_LOG(LogTemp, Log, TEXT("FireBlastEffect: Spawning fire trail for %f seconds"), Duration);
+    if (!Instigator) return;
 
-    // In real implementation:
-    // 1. Spawn a fire trail actor attached to the instigator
-    // 2. Set its lifespan to Duration
-    // 3. Configure damage over time for enemies that touch the trail
+    UWorld* World = Instigator->GetWorld();
+    if (!World) return;
+
+    // Store the instigator's current velocity direction for trail orientation
+    FVector TrailDirection = Instigator->GetVelocity().GetSafeNormal();
+    FVector TrailStart = Instigator->GetActorLocation();
+
+    // Apply radial fire damage in a sweep along the slide direction
+    // using the existing ApplyRadialDamage helper from the base class
+    int32 NumTrailPoints = FMath::Max(3, FMath::FloorToInt(Duration * 4.f));
+    float StepDistance = 80.f;
+
+    for (int32 i = 0; i < NumTrailPoints; i++)
+    {
+        FVector TrailPoint = TrailStart + (TrailDirection * StepDistance * i);
+
+        ApplyRadialDamage(
+            World,
+            Instigator,
+            TrailPoint,
+            100.f,          // fire trail radius
+            10.f,           // damage per point
+            UDamageType::StaticClass());
+    }
+
+    UE_LOG(LogTemp, Verbose,
+        TEXT("FireBlastEffect: Spawned fire trail with %d points over %.1fs"),
+        NumTrailPoints, Duration);
+
+    // Visual trail spawned in Blueprint via OnSpellCast BlueprintImplementableEvent
+    // when Niagara assets are available
 }

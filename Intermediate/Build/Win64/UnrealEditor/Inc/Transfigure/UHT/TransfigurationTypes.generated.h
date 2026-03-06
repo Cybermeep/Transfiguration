@@ -17,7 +17,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 // ********** Begin ScriptStruct FSigilComboRecipe *************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_121_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_122_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FSigilComboRecipe_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -26,7 +26,7 @@ struct FSigilComboRecipe;
 // ********** End ScriptStruct FSigilComboRecipe ***************************************************
 
 // ********** Begin ScriptStruct FComboChainRecipe *************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_136_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_137_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FComboChainRecipe_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -35,7 +35,7 @@ struct FComboChainRecipe;
 // ********** End ScriptStruct FComboChainRecipe ***************************************************
 
 // ********** Begin ScriptStruct FActiveComboChain *************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_154_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_155_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FActiveComboChain_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -44,7 +44,7 @@ struct FActiveComboChain;
 // ********** End ScriptStruct FActiveComboChain ***************************************************
 
 // ********** Begin ScriptStruct FPortalPair *******************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_164_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_165_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPortalPair_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -53,7 +53,7 @@ struct FPortalPair;
 // ********** End ScriptStruct FPortalPair *********************************************************
 
 // ********** Begin ScriptStruct FEnemySpawnPoint **************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_182_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_183_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FEnemySpawnPoint_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -62,7 +62,7 @@ struct FEnemySpawnPoint;
 // ********** End ScriptStruct FEnemySpawnPoint ****************************************************
 
 // ********** Begin ScriptStruct FGrappleLineData **************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_197_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_198_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FGrappleLineData_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -71,7 +71,7 @@ struct FGrappleLineData;
 // ********** End ScriptStruct FGrappleLineData ****************************************************
 
 // ********** Begin ScriptStruct FCombatGrappleData ************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_221_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_222_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FCombatGrappleData_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -80,7 +80,7 @@ struct FCombatGrappleData;
 // ********** End ScriptStruct FCombatGrappleData **************************************************
 
 // ********** Begin ScriptStruct FEnemyPoolEntry ***************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_239_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_240_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FEnemyPoolEntry_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -89,7 +89,7 @@ struct FEnemyPoolEntry;
 // ********** End ScriptStruct FEnemyPoolEntry *****************************************************
 
 // ********** Begin ScriptStruct FDestructionRequest ***********************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_260_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_261_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FDestructionRequest_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -98,7 +98,7 @@ struct FDestructionRequest;
 // ********** End ScriptStruct FDestructionRequest *************************************************
 
 // ********** Begin ScriptStruct FChunkGenerationTask **********************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_288_GENERATED_BODY \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationTypes_h_289_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FChunkGenerationTask_Statics; \
 	TRANSFIGURE_API static class UScriptStruct* StaticStruct();
 
@@ -111,6 +111,7 @@ struct FChunkGenerationTask;
 
 // ********** Begin Enum ETransfigurationElement ***************************************************
 #define FOREACH_ENUM_ETRANSFIGURATIONELEMENT(op) \
+	op(ETransfigurationElement::None) \
 	op(ETransfigurationElement::Fire) \
 	op(ETransfigurationElement::Ice) \
 	op(ETransfigurationElement::Lightning) \

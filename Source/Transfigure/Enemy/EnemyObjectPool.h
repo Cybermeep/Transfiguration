@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Transfiguration/TransfigurationTypes.h"
 #include "EnemyObjectPool.generated.h"
 
 class ABaseEnemy;
