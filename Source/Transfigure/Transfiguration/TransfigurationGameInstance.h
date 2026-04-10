@@ -1,4 +1,4 @@
-// Source/TMovement/Public/Transfiguration/TransfigurationGameInstance.h
+// Source/Transfigure/Public/Transfiguration/TransfigurationGameInstance.h
 
 #pragma once
 
@@ -16,9 +16,10 @@ public:
     virtual void Init() override;
 
     UFUNCTION(BlueprintCallable, Category = "Transfiguration")
-        UTransfigurationRegistry* GetSpellRegistry() const { return SpellRegistry; }
+    UTransfigurationRegistry* GetSpellRegistry() const { return SpellRegistry; }
 
 private:
-    UPROPERTY()
-        TObjectPtr<UTransfigurationRegistry> SpellRegistry;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Transfiguration",
+        meta = (AllowPrivateAccess = "true"))
+    TObjectPtr<UTransfigurationRegistry> SpellRegistry;
 };

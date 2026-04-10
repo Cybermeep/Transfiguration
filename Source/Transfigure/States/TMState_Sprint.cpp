@@ -16,24 +16,16 @@ void TMState_Sprint::Enter()
 void TMState_Sprint::Tick(float DeltaTime)
 {
     auto* CMC = Owner->GetCharacterMovement();
-
     if (!Owner->bSprintHeld)
     {
         Owner->TransitionTo<TMState_Walk>();
         return;
     }
-
     if (Owner->bSlidePressed)
     {
         Owner->bSlidePressed = false;
         Owner->TransitionTo<TMState_Slide>();
         return;
-    }
-
-    if (!CMC->IsMovingOnGround())
-    {
-        Owner->JumpsRemaining = 2;
-        Owner->TransitionTo<TMState_Jump>();
     }
 }
 

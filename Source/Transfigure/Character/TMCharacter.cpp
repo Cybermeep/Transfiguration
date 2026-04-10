@@ -125,7 +125,7 @@ void ATMCharacter::OnJumpPressed()
         // Mid-air near a wall — wall jump instead
         TransitionTo<TMState_WallJump>();
     }
-    else if (JumpsRemaining >= 0)
+    else if (JumpsRemaining > 0)
     {
         // Airborne with jumps left — double jump
         TransitionTo<TMState_DoubleJump>();

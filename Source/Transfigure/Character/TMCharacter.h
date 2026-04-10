@@ -142,6 +142,26 @@ public:
 
     UPROPERTY(BlueprintReadOnly, Category = "TM|Temporal")
         float TemporalTimeRemaining = 0.0f;
+      
+        //new properties
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TM|Input")
+        TObjectPtr<UInputAction> IA_Fire;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TM|Input")
+        TObjectPtr<UInputAction> IA_Aim;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TM|Input")
+        TObjectPtr<UInputAction> IA_Reload;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TM|Input")
+        TObjectPtr<UInputAction> IA_Melee;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TM|Input")
+        TObjectPtr<UInputAction> IA_Crouch;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TM|Input")
+        TObjectPtr<UInputAction> IA_Temporal;
+
 
     // ── STATE ──
     UPROPERTY(BlueprintReadOnly, Category = "TM|State")

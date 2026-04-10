@@ -107,6 +107,8 @@ struct Z_Construct_UClass_UTransfigurationGameInstance_Statics
 		{ "ModuleRelativePath", "Transfiguration/TransfigurationGameInstance.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpellRegistry_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Transfiguration" },
 		{ "ModuleRelativePath", "Transfiguration/TransfigurationGameInstance.h" },
 	};
 #endif // WITH_METADATA
@@ -122,7 +124,7 @@ struct Z_Construct_UClass_UTransfigurationGameInstance_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTransfigurationGameInstance_Statics::NewProp_SpellRegistry = { "SpellRegistry", nullptr, (EPropertyFlags)0x0144000000000000, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTransfigurationGameInstance, SpellRegistry), Z_Construct_UClass_UTransfigurationRegistry_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpellRegistry_MetaData), NewProp_SpellRegistry_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTransfigurationGameInstance_Statics::NewProp_SpellRegistry = { "SpellRegistry", nullptr, (EPropertyFlags)0x0144000000010015, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTransfigurationGameInstance, SpellRegistry), Z_Construct_UClass_UTransfigurationRegistry_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpellRegistry_MetaData), NewProp_SpellRegistry_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTransfigurationGameInstance_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTransfigurationGameInstance_Statics::NewProp_SpellRegistry,
 };
@@ -164,10 +166,10 @@ UTransfigurationGameInstance::~UTransfigurationGameInstance() {}
 struct Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationGameInstance_h__Script_Transfigure_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UTransfigurationGameInstance, UTransfigurationGameInstance::StaticClass, TEXT("UTransfigurationGameInstance"), &Z_Registration_Info_UClass_UTransfigurationGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTransfigurationGameInstance), 773003485U) },
+		{ Z_Construct_UClass_UTransfigurationGameInstance, UTransfigurationGameInstance::StaticClass, TEXT("UTransfigurationGameInstance"), &Z_Registration_Info_UClass_UTransfigurationGameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTransfigurationGameInstance), 3010294219U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationGameInstance_h__Script_Transfigure_1070087951(TEXT("/Script/Transfigure"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationGameInstance_h__Script_Transfigure_3884222831(TEXT("/Script/Transfigure"),
 	Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationGameInstance_h__Script_Transfigure_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Transfiguration_TransfigurationGameInstance_h__Script_Transfigure_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

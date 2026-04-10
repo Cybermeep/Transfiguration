@@ -1,4 +1,4 @@
-// Source/TMovement/Private/Transfiguration/TransfigurationRegistry.cpp
+// Source/Transfigure/Private/Transfiguration/TransfigurationRegistry.cpp
 
 #include "Transfiguration/TransfigurationRegistry.h"
 
@@ -18,4 +18,16 @@ TArray<UTransfigurationDefinition*> UTransfigurationRegistry::GetSpellsByElement
             Result.Add(Pair.Value.Get());
     }
     return Result;
+}
+
+bool UTransfigurationRegistry::HasSpell(FName SpellID) const
+{
+    return SpellTable.Contains(SpellID);
+}
+
+TArray<FName> UTransfigurationRegistry::GetAllSpellIDs() const
+{
+    TArray<FName> Keys;
+    SpellTable.GetKeys(Keys);
+    return Keys;
 }

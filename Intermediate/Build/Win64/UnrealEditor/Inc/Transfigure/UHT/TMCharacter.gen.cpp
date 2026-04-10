@@ -1436,6 +1436,36 @@ struct Z_Construct_UClass_ATMCharacter_Statics
 		{ "Category", "TM|Temporal" },
 		{ "ModuleRelativePath", "Character/TMCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Fire_MetaData[] = {
+		{ "Category", "TM|Input" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//new properties\n" },
+#endif
+		{ "ModuleRelativePath", "Character/TMCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "new properties" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Aim_MetaData[] = {
+		{ "Category", "TM|Input" },
+		{ "ModuleRelativePath", "Character/TMCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Reload_MetaData[] = {
+		{ "Category", "TM|Input" },
+		{ "ModuleRelativePath", "Character/TMCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Melee_MetaData[] = {
+		{ "Category", "TM|Input" },
+		{ "ModuleRelativePath", "Character/TMCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Crouch_MetaData[] = {
+		{ "Category", "TM|Input" },
+		{ "ModuleRelativePath", "Character/TMCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Temporal_MetaData[] = {
+		{ "Category", "TM|Input" },
+		{ "ModuleRelativePath", "Character/TMCharacter.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentStateName_MetaData[] = {
 		{ "Category", "TM|State" },
 #if !UE_BUILD_SHIPPING
@@ -1626,6 +1656,12 @@ struct Z_Construct_UClass_ATMCharacter_Statics
 	static void NewProp_bIsTemporalActive_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsTemporalActive;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_TemporalTimeRemaining;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Fire;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Aim;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Reload;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Melee;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Crouch;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Temporal;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_CurrentStateName;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnManaChanged;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnManaDepleted;
@@ -1743,6 +1779,12 @@ void Z_Construct_UClass_ATMCharacter_Statics::NewProp_bIsTemporalActive_SetBit(v
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_bIsTemporalActive = { "bIsTemporalActive", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ATMCharacter), &Z_Construct_UClass_ATMCharacter_Statics::NewProp_bIsTemporalActive_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsTemporalActive_MetaData), NewProp_bIsTemporalActive_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_TemporalTimeRemaining = { "TemporalTimeRemaining", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, TemporalTimeRemaining), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TemporalTimeRemaining_MetaData), NewProp_TemporalTimeRemaining_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Fire = { "IA_Fire", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, IA_Fire), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Fire_MetaData), NewProp_IA_Fire_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Aim = { "IA_Aim", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, IA_Aim), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Aim_MetaData), NewProp_IA_Aim_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Reload = { "IA_Reload", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, IA_Reload), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Reload_MetaData), NewProp_IA_Reload_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Melee = { "IA_Melee", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, IA_Melee), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Melee_MetaData), NewProp_IA_Melee_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Crouch = { "IA_Crouch", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, IA_Crouch), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Crouch_MetaData), NewProp_IA_Crouch_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Temporal = { "IA_Temporal", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, IA_Temporal), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Temporal_MetaData), NewProp_IA_Temporal_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_CurrentStateName = { "CurrentStateName", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, CurrentStateName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentStateName_MetaData), NewProp_CurrentStateName_MetaData) };
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_OnManaChanged = { "OnManaChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, OnManaChanged), Z_Construct_UDelegateFunction_ATMCharacter_OnManaChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnManaChanged_MetaData), NewProp_OnManaChanged_MetaData) }; // 2425657902
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATMCharacter_Statics::NewProp_OnManaDepleted = { "OnManaDepleted", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATMCharacter, OnManaDepleted), Z_Construct_UDelegateFunction_ATMCharacter_OnManaDepleted__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnManaDepleted_MetaData), NewProp_OnManaDepleted_MetaData) }; // 3783566080
@@ -1813,6 +1855,12 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATMCharac
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_TemporalCameraFOV,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_bIsTemporalActive,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_TemporalTimeRemaining,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Fire,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Aim,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Reload,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Melee,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Crouch,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_IA_Temporal,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_CurrentStateName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_OnManaChanged,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATMCharacter_Statics::NewProp_OnManaDepleted,
@@ -1882,10 +1930,10 @@ ATMCharacter::~ATMCharacter() {}
 struct Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h__Script_Transfigure_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ATMCharacter, ATMCharacter::StaticClass, TEXT("ATMCharacter"), &Z_Registration_Info_UClass_ATMCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATMCharacter), 979633873U) },
+		{ Z_Construct_UClass_ATMCharacter, ATMCharacter::StaticClass, TEXT("ATMCharacter"), &Z_Registration_Info_UClass_ATMCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATMCharacter), 817730638U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h__Script_Transfigure_4232660349(TEXT("/Script/Transfigure"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h__Script_Transfigure_3788180383(TEXT("/Script/Transfigure"),
 	Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h__Script_Transfigure_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h__Script_Transfigure_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

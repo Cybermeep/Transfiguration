@@ -19,28 +19,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 enum class EGrappleTier : uint8;
 
 // ********** Begin Delegate FOnManaChanged ********************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_223_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_243_DELEGATE \
 static void FOnManaChanged_DelegateWrapper(const FMulticastScriptDelegate& OnManaChanged, float NewMana, float MaxMana);
 
 
 // ********** End Delegate FOnManaChanged **********************************************************
 
 // ********** Begin Delegate FOnManaDepleted *******************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_227_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_247_DELEGATE \
 static void FOnManaDepleted_DelegateWrapper(const FMulticastScriptDelegate& OnManaDepleted, float TimeUntilRegen);
 
 
 // ********** End Delegate FOnManaDepleted *********************************************************
 
 // ********** Begin Delegate FOnManaRegenStarted ***************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_231_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_251_DELEGATE \
 static void FOnManaRegenStarted_DelegateWrapper(const FMulticastScriptDelegate& OnManaRegenStarted);
 
 
 // ********** End Delegate FOnManaRegenStarted *****************************************************
 
 // ********** Begin Delegate FTemporalClapDelegate *************************************************
-#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_235_DELEGATE \
+#define FID_Users_Lynette_Desktop_Unreal_Projects_Transfigure_Source_Transfigure_Character_TMCharacter_h_255_DELEGATE \
 static void FTemporalClapDelegate_DelegateWrapper(const FMulticastScriptDelegate& TemporalClapDelegate);
 
 
